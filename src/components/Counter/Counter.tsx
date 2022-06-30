@@ -12,13 +12,11 @@ type CounterPropsType = {
 export const Counter = ({id, value, isFourth}: CounterPropsType) => {
     const dispatch = useDispatch()
 
-    const incCounter = () => {
-        dispatch(changeCounterAC(id, 'inc'))
-    }
+    const incCounter = () => dispatch(changeCounterAC(id, 'inc'))
 
-    const decCounter = () => {
-        dispatch(changeCounterAC(id, 'dec'))
-    }
+    const decCounter = () => dispatch(changeCounterAC(id, 'dec'))
+
+    const removeCounter = () => dispatch(removeCounterAC(id))
 
     useEffect(() => {
         let intervalId: string | number | NodeJS.Timeout | undefined
@@ -35,13 +33,17 @@ export const Counter = ({id, value, isFourth}: CounterPropsType) => {
             {isFourth
                 ? <div className={`${styles.counter} ${styles.withoutButtons}`}>
                     <div className={styles.value}>{value}</div>
-                    <button onClick={()=> dispatch(removeCounterAC(id))}>remove</button>
+                    <div className={styles.remove} onClick={removeCounter}>
+                        <span>&#215;</span>
+                    </div>
                 </div>
                 : <div className={styles.counter}>
                     <button className={`${styles.button} ${styles.dec}`} onClick={decCounter}>-</button>
                     <div className={styles.value}>{value}</div>
                     <button className={`${styles.button} ${styles.inc}`} onClick={incCounter}>+</button>
-                    <button onClick={()=> dispatch(removeCounterAC(id))}>remove</button>
+                    <div className={styles.remove} onClick={removeCounter}>
+                        <span>&#215;</span>
+                    </div>
                 </div>
             }
         </div>
