@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {useAppSelector} from "./store/store";
+import {useDispatch} from "react-redux";
+import {addCounterAC} from "./store/countersReducer";
+import {CounterWithButtons} from "./components/CounterWithButtons/CounterWithButtons";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch()
+    const counters = useAppSelector(state => state.counters)
+    const addCounter = () => {
+        dispatch(addCounterAC())
+    }
+
+    return (
+        <div className="App">
+            <button onClick={addCounter}>add counter</button>
+            {counters.map((c, i) => {
+                    return (<CounterWithButtons
+                        key={c.id}
+                        id={c.id}
+                        value={c.value}
+                        index={i + 1}/>)
+                }
+            )}
+        </div>
+    );
 }
 
 export default App;
