@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {useAppSelector} from "./store/store";
 import {useDispatch} from "react-redux";
 import {addCounterAC} from "./store/countersReducer";
