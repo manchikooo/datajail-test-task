@@ -1,17 +1,16 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from "react-redux";
-import {changeCounterAC} from "../../store/countersReducer";
+import {changeCounterAC, removeCounterAC} from "../../store/countersReducer";
+import styles from './Counter.module.scss'
 
 type CounterPropsType = {
     id: string,
     value: number,
-    index: number
+    isFourth: boolean,
 }
 
-export const Counter = ({id, value, index}: CounterPropsType) => {
+export const Counter = ({id, value, isFourth}: CounterPropsType) => {
     const dispatch = useDispatch()
-
-    const isFourthCounter = index % 4 === 0
 
     const incCounter = () => {
         dispatch(changeCounterAC(id, 'inc'))
@@ -23,7 +22,7 @@ export const Counter = ({id, value, index}: CounterPropsType) => {
 
     useEffect(() => {
         let intervalId: string | number | NodeJS.Timeout | undefined
-        if (isFourthCounter) {
+        if (isFourth) {
             intervalId = setInterval(() => {
                 dispatch(changeCounterAC(id, 'inc'))
             }, 1000)
@@ -33,13 +32,17 @@ export const Counter = ({id, value, index}: CounterPropsType) => {
 
     return (
         <div>
-            {isFourthCounter
-                ? value
-                : <>
-                    <button onClick={decCounter}>-</button>
-                    {value}
-                    <button onClick={incCounter}>+</button>
-                </>
+            {isFourth
+                ? <div className={`${styles.counter} ${styles.withoutButtons}`}>
+                    <div className={styles.value}>{value}</div>
+                    <button onClick={()=> dispatch(removeCounterAC(id))}>remove</button>
+                </div>
+                : <div className={styles.counter}>
+                    <button className={`${styles.button} ${styles.dec}`} onClick={decCounter}>-</button>
+                    <div className={styles.value}>{value}</div>
+                    <button className={`${styles.button} ${styles.inc}`} onClick={incCounter}>+</button>
+                    <button onClick={()=> dispatch(removeCounterAC(id))}>remove</button>
+                </div>
             }
         </div>
     );
