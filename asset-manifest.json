@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/datajail-test-task/static/css/main.073c9b0a.css",
+    "main.js": "/datajail-test-task/static/js/main.120803cf.js",
+    "static/js/787.36c68d0c.chunk.js": "/datajail-test-task/static/js/787.36c68d0c.chunk.js",
+    "index.html": "/datajail-test-task/index.html",
+    "main.073c9b0a.css.map": "/datajail-test-task/static/css/main.073c9b0a.css.map",
+    "main.120803cf.js.map": "/datajail-test-task/static/js/main.120803cf.js.map",
+    "787.36c68d0c.chunk.js.map": "/datajail-test-task/static/js/787.36c68d0c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.120803cf.js"
+  ]
+}
