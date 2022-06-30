@@ -3,7 +3,7 @@ import './App.css';
 import {useAppSelector} from "./store/store";
 import {useDispatch} from "react-redux";
 import {addCounterAC} from "./store/countersReducer";
-import {CounterWithButtons} from "./components/CounterWithButtons/CounterWithButtons";
+import {Counter} from "./components/Counter/Counter";
 
 function App() {
     const dispatch = useDispatch()
@@ -16,7 +16,7 @@ function App() {
         <div className="App">
             <button onClick={addCounter}>add counter</button>
             {counters.map((c, i) => {
-                    return (<CounterWithButtons
+                    return (<Counter
                         key={c.id}
                         id={c.id}
                         value={c.value}
